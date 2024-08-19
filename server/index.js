@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+
 const cors = require("cors");
 const pool = require("./db");
 
@@ -41,9 +42,43 @@ app.get("/todos", async(req,res)=>{
 
 //get single todo
 
+app.get( "/todos/:id", async(req,res)=>{
+
+    try {
+        const {id} = req.params;
+        const todo = await pool.query("select * from todo where todo_id = $1",[id]);
+        res.json(todo.rows[0]);
+    } catch (error) {
+        console.error(error.message);
+    }
+
+})
+
 //update a todo
 
+app.put("/todos/:id", async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const {description} = req.body;
+        const updateTodo = await pool.query("update todo set description = $1 where todo_id = $2",[description,id]);
+
+        res.json("Todo was updated");
+    } catch (error) {
+        console.error(error.message);
+    }
+})
+
 //delete a todo
+
+app.delete("/todos/:id", async(req, res)=>{
+    try {
+        const {id} = req.params;
+        const deleteTodo = await pool.query("delete from todo where todo_id = $1", [id]);
+        res.json("todo was deleted");
+    } catch (error) {
+        console.error(error,message);
+    }
+})
 
 app.listen(5001, ()=>{
     console.log("server has started on port 5001");
