@@ -12,6 +12,8 @@ const devConfig = {
 
 const proConfig = {
     connectionString: process.env.DATABASE_URL, //comes from heroku addons
+
+    //line below fixes 503 error
     ssl: { rejectUnauthorized: false },
 }
 
