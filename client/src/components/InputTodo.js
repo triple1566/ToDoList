@@ -9,7 +9,7 @@ const InputTodo = ()=>{
         e.preventDefault();
         try {
             const body = {description};
-            const response = await fetch("http://localhost:8080/todos",
+            const response = await fetch("/todos",
             {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
