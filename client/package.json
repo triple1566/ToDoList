@@ -37,5 +37,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "postgres://u7o8joudapqpai:p5063140c0b6225efb9b5e9e57abf76211931dae44cf36c1574eb21688761e4e7@c67okggoj39697.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/dedshnqdu2mifu"
+  "proxy": "http://localhost:5001"
 }
