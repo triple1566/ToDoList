@@ -25,7 +25,9 @@ if(process.env.NODE_ENV === "production"){
 app.post("/todos", async(req,res)=>{
     try {
         const {description} = req.body;
-        const newTodo = await pool.query("INSERT INTO todo (description) VALUES($1) RETURNING *", [description]);
+        const newTodo = await pool.query(
+            "INSERT INTO todo (description) VALUES($1) RETURNING *", 
+            [description]);
         console.log("\ntodo item has been inserted to todo\n");
         res.json(newTodo.rows[0]);
     } catch (error) {
